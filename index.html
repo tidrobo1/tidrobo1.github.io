@@ -13,7 +13,7 @@
         const maintenanceMode = true; // SET TO FALSE TO SHOW PORTFOLIO
         
         if (maintenanceMode) {
-            document.documentElement.innerHTML = `
+            document.write(`
                 <!DOCTYPE html>
                 <html>
                 <head>
@@ -58,8 +58,8 @@
                     </div>
                 </body>
                 </html>
-            `;
-            throw new Error("Maintenance mode enabled");
+            `);
+            document.close();
         }
     </script>
 
