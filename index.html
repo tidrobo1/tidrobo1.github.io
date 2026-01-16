@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thomasidrobo.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital@1&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <script>
+        // Maintenance Mode Toggle
+        const maintenanceMode = true; // SET TO FALSE TO SHOW PORTFOLIO
+        
+        if (maintenanceMode) {
+            document.documentElement.innerHTML = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Maintenance</title>
+                    <style>
+                        * { margin: 0; padding: 0; }
+                        body {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            min-height: 100vh;
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                        }
+                        .maintenance-container {
+                            text-align: center;
+                            color: white;
+                            padding: 20px;
+                        }
+                        h1 {
+                            font-size: 3.5rem;
+                            margin-bottom: 10px;
+                            font-weight: 700;
+                        }
+                        p {
+                            font-size: 1.3rem;
+                            opacity: 0.95;
+                            margin-bottom: 30px;
+                        }
+                        .emoji {
+                            font-size: 5rem;
+                            margin-bottom: 20px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="maintenance-container">
+                        <div class="emoji">🔧</div>
+                        <h1>Down for Maintenance</h1>
+                        <p>I'm working on something awesome. Check back soon!</p>
+                        <p style="font-size: 1rem; opacity: 0.85; margin-top: 20px;">I apologize for any inconvenience this may cause.</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            throw new Error("Maintenance mode enabled");
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #D8D8DC;
+            color: #0A0A0A;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative radial gradient blurs */
+        .blur-decoration {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .blur-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .blur-red {
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.9) 0%, rgba(220, 38, 38, 0.6) 40%, rgba(220, 38, 38, 0.3) 60%, transparent 80%);
+        }
+
+        .blur-yellow {
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.8) 0%, rgba(255, 193, 7, 0.5) 40%, rgba(255, 193, 7, 0.25) 60%, transparent 80%);
+        }
+
+        .blur-blue {
+            background: radial-gradient(circle, rgba(74, 124, 181, 0.85) 0%, rgba(74, 124, 181, 0.55) 40%, rgba(74, 124, 181, 0.3) 60%, transparent 80%);
+        }
+
+        .blur-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+            transition: transform 0.1s ease-out;
+        }
+
+        .blur-2 {
+            width: 500px;
+            height: 500px;
+            bottom: 100px;
+            left: -150px;
+            transition: transform 0.1s ease-out;
+        }
+
+        .blur-3 {
+            width: 350px;
+            height: 350px;
+            top: 50%;
+            right: -80px;
+            transition: transform 0.1s ease-out;
+        }
+
+        .blur-4 {
+            width: 450px;
+            height: 450px;
+            bottom: 30%;
+            left: 10%;
+            transition: transform 0.1s ease-out;
+        }
+
+        .blur-5 {
+            width: 380px;
+            height: 380px;
+            top: 20%;
+            left: 30%;
+            transition: transform 0.1s ease-out;
+        }
+
+        .blur-6 {
+            width: 420px;
+            height: 420px;
+            bottom: 40%;
+            right: 20%;
+            transition: transform 0.1s ease-out;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: #C5C3BE;
+            margin: 0;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 24px 0 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flag-container {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .flag-svg {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: #0A0A0A;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            transition: opacity 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.6;
+        }
+
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: calc(100vh - 50px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0;
+            margin-bottom: 25vh;
+        }
+
+        .hero-location {
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 4px;
+            margin-bottom: 12px;
+        }
+
+        .location-item {
+            margin-bottom: 12px;
+        }
+
+        .location-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .hero-headline {
+            font-family: 'Newsreader', serif;
+            font-size: 96px;
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.1;
+            margin: 32px 0 40px 0;
+        }
+
+        .hero-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            font-size: 16px;
+        }
+
+        .hero-info-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .experience-card {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 32px 0;
+        }
+
+        .company-logo {
+            width: 72px;
+            height: 72px;
+            flex-shrink: 0;
+            animation: bounceAndSpin 8s ease-in-out infinite;
+        }
+
+        .microsoft-custom-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: auto;
+            animation: none !important;
+        }
+
+        .ms-logo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .ms-square {
+            width: 15px;
+            height: 15px;
+        }
+
+        .ms-red {
+            background-color: #F25022;
+            animation: letterBounce 1.5s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .ms-green {
+            background-color: #7FBA00;
+            animation: letterBounce 1.5s ease-in-out infinite;
+            animation-delay: 0.05s;
+        }
+
+        .ms-blue {
+            background-color: #00A4EF;
+            animation: letterBounce 1.5s ease-in-out infinite;
+            animation-delay: 0.1s;
+        }
+
+        .ms-yellow {
+            background-color: #FFB900;
+            animation: letterBounce 1.5s ease-in-out infinite;
+            animation-delay: 0.15s;
+        }
+
+        .ms-text {
+            display: flex;
+            gap: 1px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #5E5E5E;
+        }
+
+        .ms-letter {
+            display: inline-block;
+            animation: letterBounce 1.5s ease-in-out infinite;
+        }
+
+        .ms-letter:nth-child(1) { animation-delay: 0.2s; }
+        .ms-letter:nth-child(2) { animation-delay: 0.25s; }
+        .ms-letter:nth-child(3) { animation-delay: 0.3s; }
+        .ms-letter:nth-child(4) { animation-delay: 0.35s; }
+        .ms-letter:nth-child(5) { animation-delay: 0.4s; }
+        .ms-letter:nth-child(6) { animation-delay: 0.45s; }
+        .ms-letter:nth-child(7) { animation-delay: 0.5s; }
+        .ms-letter:nth-child(8) { animation-delay: 0.55s; }
+        .ms-letter:nth-child(9) { animation-delay: 0.6s; }
+
+        @keyframes letterBounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.15);
+            }
+        }
+
+        @keyframes bounceAndSpin {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            10% {
+                transform: translateY(-5px) rotate(180deg) scale(0.7);
+            }
+            25% {
+                transform: translateY(-40px) rotate(540deg) scale(0.6);
+            }
+            50% {
+                transform: translateY(-50px) rotate(1080deg) scale(0.5);
+            }
+            75% {
+                transform: translateY(-30px) rotate(1440deg) scale(0.7);
+            }
+            90% {
+                transform: translateY(-5px) rotate(1620deg) scale(0.9);
+            }
+        }
+
+        .experience-content {
+            flex: 1;
+        }
+
+        .experience-title {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .experience-description {
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            color: #0A0A0A;
+            opacity: 0.7;
+            font-size: 16px;
+        }
+
+        .circle-arrow {
+            width: 52px;
+            height: 52px;
+            border: 1.5px solid #0A0A0A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            background-color: transparent;
+        }
+
+        .circle-arrow svg {
+            transition: transform 0.2s ease;
+        }
+
+        .circle-arrow:hover {
+            background-color: #0A0A0A;
+        }
+
+        .circle-arrow:hover svg path {
+            stroke: #E5E3DE;
+        }
+
+        .circle-arrow:hover svg {
+            transform: translateX(4px);
+        }
+
+        .experience-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0;
+        }
+
+        .experience-details.expanded {
+            max-height: 500px;
+            padding: 24px 0 0 96px;
+        }
+
+        .experience-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .experience-details li {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .experience-details li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Side Projects Section */
+        .projects {
+            padding: 60px 0;
+        }
+
+        .projects-empty {
+            text-align: center;
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-size: 18px;
+            padding: 60px 0;
+            opacity: 0.6;
+        }
+
+        /* Phone Mockup */
+        .phone-mockup-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            padding: 40px 0;
+        }
+
+        .phone-mockup {
+            width: 280px;
+            height: 570px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+            z-index: 2;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-screen-content {
+            width: 100%;
+            height: 200%;
+            background-image: url('space-news-screenshot.png');
+            background-size: cover;
+            background-position: top center;
+            animation: phoneScroll 10s ease-in-out infinite;
+        }
+
+        @keyframes phoneScroll {
+            0%, 20% {
+                transform: translateY(0);
+            }
+            45%, 55% {
+                transform: translateY(-50%);
+            }
+            80%, 100% {
+                transform: translateY(0);
+            }
+        }
+
+        .project-details {
+            flex: 1;
+        }
+
+        .project-details h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .project-details .tagline {
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-size: 20px;
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .project-tech-stack {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .tech-tag {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: #0A0A0A;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .project-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 0 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #0A0A0A;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.6;
+        }
+
+        .footer-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .nav-links {
+                position: static;
+                transform: none;
+            }
+
+            .hero-headline {
+                font-size: 48px;
+            }
+
+            .experience-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .circle-arrow {
+                align-self: flex-end;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                align-items: flex-start;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative gradient blurs - only on first page -->
+    <div class="blur-wrapper">
+        <div class="blur-decoration blur-1 blur-red"></div>
+        <div class="blur-decoration blur-2 blur-red"></div>
+        <div class="blur-decoration blur-3 blur-yellow"></div>
+        <div class="blur-decoration blur-4 blur-yellow"></div>
+        <div class="blur-decoration blur-5 blur-blue"></div>
+        <div class="blur-decoration blur-6 blur-blue"></div>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">
+                <span>Thomas Idrobo</span>
+                <div class="flag-container">
+                    <!-- Colombian Flag -->
+                    <svg class="flag-svg" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="900" height="600" fill="#FCD116"/>
+                        <rect y="300" width="900" height="150" fill="#0066CC"/>
+                        <rect y="450" width="900" height="150" fill="#CE1126"/>
+                    </svg>
+                    <!-- American Flag -->
+                    <svg class="flag-svg" viewBox="0 0 7410 3900" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="7410" height="3900" fill="#B22234"/>
+                        <path d="M 0,450 h 7410 m 0,600 H 0 m 0,600 h 7410 m 0,600 H 0 m 0,600 h 7410 m 0,600 H 0" stroke="#FFF" stroke-width="300"/>
+                        <rect width="2964" height="2100" fill="#3C3B6E"/>
+                        <g fill="#FFF">
+                            <g id="s18">
+                                <g id="s9">
+                                    <g id="s5">
+                                        <g id="s4">
+                                            <path id="s" d="M 247,90 l 0,210 m -175.9,-30.9 l 151.8,0"/>
+                                            <use href="#s" y="420"/>
+                                            <use href="#s" y="840"/>
+                                            <use href="#s" y="1260"/>
+                                        </g>
+                                        <use href="#s" y="1680"/>
+                                    </g>
+                                    <use href="#s4" x="247" y="210"/>
+                                </g>
+                                <use href="#s9" x="494"/>
+                            </g>
+                            <use href="#s18" x="988"/>
+                            <use href="#s9" x="1976"/>
+                            <use href="#s5" x="2470"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <span>|</span>
+                <a href="#about">About</a>
+                <span>|</span>
+                <a href="#projects">Projects</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://github.com/tidrobo1" target="_blank" aria-label="GitHub">
+                    <svg fill="#0A0A0A" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/thomas-idrobo/" target="_blank" aria-label="LinkedIn">
+                    <svg fill="#0A0A0A" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+
+        <div class="divider"></div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-location">
+                <div class="location-item">Based in New York → <span id="clock-ny"></span></div>
+                <div class="location-item">Based in Boston → <span id="clock-boston"></span></div>
+                <div class="location-item">Based in Seattle → <span id="clock-seattle"></span></div>
+                <div class="location-item">Based in Padova, Italy → <span id="clock-padova"></span> 📍</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h1 class="hero-headline">Hello, I'm Thomas.</h1>
+
+            <div class="hero-info">
+                <div class="hero-info-row">
+                    <span>Incoming → <strong>Software Engineering Intern @ Microsoft</strong></span>
+                </div>
+                <div class="hero-info-row">
+                    <span>Previously → <strong>Explore (SWE & PM) Intern @ Microsoft</strong></span>
+                </div>
+                <div class="hero-info-row">
+                    <span>Seeking → Remote Part-time & Fall/Spring Opportunites 🚀</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Experience Section -->
+        <section class="experience" id="work">
+            <div class="section-header">
+                <span>Experience</span>
+                <span>Internships → 2</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="experience-item">
+                <div class="experience-card">
+                    <div class="company-logo microsoft-custom-logo">
+                        <div class="ms-logo-grid">
+                            <div class="ms-square ms-red"></div>
+                            <div class="ms-square ms-green"></div>
+                            <div class="ms-square ms-blue"></div>
+                            <div class="ms-square ms-yellow"></div>
+                        </div>
+                        <div class="ms-text">
+                            <span class="ms-letter">M</span>
+                            <span class="ms-letter">i</span>
+                            <span class="ms-letter">c</span>
+                            <span class="ms-letter">r</span>
+                            <span class="ms-letter">o</span>
+                            <span class="ms-letter">s</span>
+                            <span class="ms-letter">o</span>
+                            <span class="ms-letter">f</span>
+                            <span class="ms-letter">t</span>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-title">Microsoft</div>
+                        <div class="experience-description">Incoming Software Engineering Intern, Summer 2026</div>
+                    </div>
+                    <button class="circle-arrow" onclick="toggleExperience(this)" aria-label="Learn more">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="experience-details">
+                    <ul>
+                        <li>Contribute to feature development and deployment for Microsoft products.</li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="experience-item">
+                <div class="experience-card">
+                    <div class="company-logo">
+                        <svg viewBox="0 0 23 23" fill="none">
+                            <rect width="11" height="11" fill="#F25022"/>
+                            <rect x="12" width="11" height="11" fill="#7FBA00"/>
+                            <rect y="12" width="11" height="11" fill="#00A4EF"/>
+                            <rect x="12" y="12" width="11" height="11" fill="#FFB900"/>
+                        </svg>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-title">Microsoft</div>
+                        <div class="experience-description">Explore (SWE & PM) Intern, Summer 2025</div>
+                    </div>
+                    <button class="circle-arrow" onclick="toggleExperience(this)" aria-label="Learn more">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="experience-details">
+                    <ul>
+                        <li>Designed and built an on-call engineer assistant AI agent in collaboration with 2 engineers and product managers, streamlining incident response workflows for 10+ engineers.</li>
+                        <li>Defined 8+ critical functionalities through 10+ user interviews and built an AI agent with Azure OpenAI + TaskWeaver, aiming to reduce average incident resolution time by 40%.</li>
+                        <li>Collaborated with cross-functional teams to gather requirements and ensure successful implementation of the AI agent.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Side Projects Section -->
+        <section class="projects" id="projects">
+            <div class="section-header">
+                <span>Side Projects</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="phone-mockup-container">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="phone-screen-content"></div>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h3>Space News Website</h3>
+                    <p class="tagline">Exploring the cosmos, one article at a time</p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                    <p style="margin-bottom: 24px; line-height: 1.6;">
+                        A dynamic web platform featuring the latest space exploration news, NASA updates, and cosmic discoveries. Built with modern web technologies and responsive design for seamless viewing across all devices.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tidrobo1/Space-news-website" target="_blank" class="project-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="mailto:your.email@example.com">→Email</a>
+                    <a href="#resume" target="_blank">→Resume</a>
+                    <a href="https://www.linkedin.com/in/thomas-idrobo/" target="_blank">→LinkedIn</a>
+                    <a href="https://www.instagram.com/thomas.idrobo/" target="_blank">→Instagram</a>
+                    <a href="https://github.com/tidrobo1" target="_blank">→GitHub</a>
+                </div>
+                <div class="footer-meta">
+                    <span>Updated 1/25</span>
+                    <span>©Thomas_2025</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Prevent browser from restoring scroll position
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        // Scroll to top immediately
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+
+        // Force scroll to top on load
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 0);
+        };
+
+        // Immediate scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            window.scrollTo(0, 0);
+        });
+
+        // Scroll on every possible event
+        window.scrollTo(0, 0);
+
+        // Live clocks for multiple timezones
+        function updateClocks() {
+            const now = new Date();
+            const options = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+
+            // New York
+            const nyTime = now.toLocaleTimeString('en-US', {
+                ...options,
+                timeZone: 'America/New_York'
+            });
+            document.getElementById('clock-ny').textContent = nyTime;
+
+            // Boston (same as New York - Eastern Time)
+            const bostonTime = now.toLocaleTimeString('en-US', {
+                ...options,
+                timeZone: 'America/New_York'
+            });
+            document.getElementById('clock-boston').textContent = bostonTime;
+
+            // Seattle
+            const seattleTime = now.toLocaleTimeString('en-US', {
+                ...options,
+                timeZone: 'America/Los_Angeles'
+            });
+            document.getElementById('clock-seattle').textContent = seattleTime;
+
+            // Padova, Italy
+            const padovaTime = now.toLocaleTimeString('en-US', {
+                ...options,
+                timeZone: 'Europe/Rome'
+            });
+            document.getElementById('clock-padova').textContent = padovaTime;
+        }
+
+        // Update clocks every second
+        updateClocks();
+        setInterval(updateClocks, 1000);
+
+        // Toggle experience details
+        function toggleExperience(button) {
+            const experienceItem = button.closest('.experience-item');
+            const details = experienceItem.querySelector('.experience-details');
+            details.classList.toggle('expanded');
+        }
+
+        // Make gradient blurs follow mouse movement with parallax
+        document.addEventListener('mousemove', function(e) {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // Calculate movement offset based on mouse position (parallax effect)
+            const moveX = (mouseX / windowWidth - 0.5) * 100;
+            const moveY = (mouseY / windowHeight - 0.5) * 100;
+
+            // Apply different movement speeds to each blur for depth effect
+            document.querySelector('.blur-1').style.transform = `translate(${moveX * 0.3}px, ${moveY * 0.3}px)`;
+            document.querySelector('.blur-2').style.transform = `translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
+            document.querySelector('.blur-3').style.transform = `translate(${moveX * 0.4}px, ${moveY * 0.4}px)`;
+            document.querySelector('.blur-4').style.transform = `translate(${moveX * 0.6}px, ${moveY * 0.6}px)`;
+            document.querySelector('.blur-5').style.transform = `translate(${moveX * 0.35}px, ${moveY * 0.35}px)`;
+            document.querySelector('.blur-6').style.transform = `translate(${moveX * 0.45}px, ${moveY * 0.45}px)`;
+        });
+    </script>
+</body>
+</html>
