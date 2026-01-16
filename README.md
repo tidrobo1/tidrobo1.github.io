@@ -4,7 +4,7 @@ Welcome to my portfolio website! This is a showcase of my work, projects, and sk
 
 ## 🌐 Live Website
 
-Visit my portfolio: **[thomasidrobo.github.io](https://thomasidrobo.github.io)**
+Visit my portfolio: **[tidrobo1.github.io](https://tidrobo1.github.io)**
 
 ## 📋 About
 
