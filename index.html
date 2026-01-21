@@ -7,7 +7,7 @@
     
     <script>
         // Maintenance Mode Toggle
-        const maintenanceMode = false; // SET TO FALSE TO SHOW PORTFOLIO
+        const maintenanceMode = true; // SET TO FALSE TO SHOW PORTFOLIO
         
         if (maintenanceMode) {
             // Redirect to maintenance page
@@ -131,7 +131,7 @@
 
         /* Navigation */
         nav {
-            padding: 24px 0 8px 0;
+            padding: 80px 0 30px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -164,8 +164,11 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 32px;
-            font-weight: 500;
+            gap: 100px;
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-weight: 1000;
+            font-size: 24px;
         }
 
         .nav-links a {
@@ -194,8 +197,8 @@
         }
 
         .social-icons svg {
-            width: 20px;
-            height: 20px;
+            width: 28px;
+            height: 28px;
         }
 
         /* Hero Section */
@@ -203,8 +206,8 @@
             min-height: calc(100vh - 50px);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 0;
+            justify-content: flex-start;
+            padding-top: 100px;
             margin-bottom: 25vh;
         }
 
@@ -255,6 +258,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 24px;
+            font-family: 'Newsreader', serif;
+            font-style: italic;
             font-weight: 600;
             font-size: 18px;
         }
@@ -448,9 +453,11 @@
         }
 
         .experience-details li:before {
-            content: "→";
+            content: "•";
             position: absolute;
             left: 0;
+            font-size: 18px;
+            line-height: 1.4;
         }
 
         /* Side Projects Section */
@@ -467,65 +474,124 @@
             opacity: 0.6;
         }
 
-        /* Phone Mockup */
-        .phone-mockup-container {
+        /* Browser Mockup */
+        .browser-mockup-container {
             display: flex;
-            align-items: center;
-            gap: 60px;
+            flex-direction: column;
+            gap: 40px;
             padding: 40px 0;
         }
 
-        .phone-mockup {
-            width: 280px;
-            height: 570px;
-            background: #1a1a1a;
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 30px;
-            background: #1a1a1a;
-            border-radius: 0 0 20px 20px;
-            z-index: 2;
-        }
-
-        .phone-screen {
+        .browser-mockup {
             width: 100%;
-            height: 100%;
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .browser-toolbar {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #2d2d2d;
+            gap: 12px;
+        }
+
+        .browser-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .browser-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-button.red { background: #ff5f57; }
+        .browser-button.yellow { background: #febc2e; }
+        .browser-button.green { background: #28c840; }
+
+        .browser-url-bar {
+            flex: 1;
+            background: #1a1a1a;
+            border-radius: 6px;
+            padding: 8px 16px;
+            color: #888;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .browser-screen {
+            width: 100%;
+            height: 400px;
             background: #ffffff;
-            border-radius: 32px;
             overflow: hidden;
             position: relative;
         }
 
-        .phone-screen-content {
+        .browser-screen-content {
             width: 100%;
-            height: 200%;
+            height: 0;
+            padding-bottom: 92.5%; /* Matches image aspect ratio (912/985) */
             background-image: url('space-news-screenshot.png');
-            background-size: cover;
+            background-size: 100% auto;
             background-position: top center;
-            animation: phoneScroll 10s ease-in-out infinite;
+            background-repeat: no-repeat;
+            animation: browserScroll 8s ease-in-out infinite;
         }
 
-        @keyframes phoneScroll {
-            0%, 20% {
+        @keyframes browserScroll {
+            0%, 15% {
                 transform: translateY(0);
             }
-            45%, 55% {
-                transform: translateY(-50%);
+            42%, 58% {
+                transform: translateY(calc(-100% + 400px)); /* Scroll to show bottom */
             }
-            80%, 100% {
+            85%, 100% {
                 transform: translateY(0);
             }
+        }
+
+        .sage-slideshow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sage-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .sage-slide.slide-1 {
+            background-image: url('Sage Photos/SagePhoto1.jpg');
+            animation: sageFade1 6s ease-in-out infinite;
+        }
+
+        .sage-slide.slide-2 {
+            background-image: url('Sage Photos/SagePhoto2.jpg');
+            animation: sageFade2 6s ease-in-out infinite;
+        }
+
+        @keyframes sageFade1 {
+            0%, 42% { opacity: 1; }
+            50%, 92% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes sageFade2 {
+            0%, 42% { opacity: 0; }
+            50%, 92% { opacity: 1; }
+            100% { opacity: 0; }
         }
 
         .project-details {
@@ -583,6 +649,37 @@
             opacity: 0.8;
         }
 
+        .github-cta {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background-color: #0A0A0A;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-size: 18px;
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .github-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .github-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
         /* Footer */
         footer {
             padding: 32px 0 40px 0;
@@ -596,9 +693,11 @@
         }
 
         .footer-links {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-template-rows: repeat(2, auto);
+            grid-auto-flow: column;
+            gap: 8px 60px;
         }
 
         .footer-links a {
@@ -608,15 +707,40 @@
             transition: opacity 0.2s ease;
         }
 
+        .footer-links a::before {
+            content: '→';
+            margin-right: 4px;
+        }
+
         .footer-links a:hover {
             opacity: 0.6;
         }
 
         .footer-meta {
-            display: flex;
-            gap: 16px;
+            text-align: right;
             font-size: 14px;
             opacity: 0.6;
+        }
+
+        .footer-meta span {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer-meta span:last-child {
+            margin-bottom: 0;
+        }
+
+        .mouse-glow {
+            position: fixed;
+            width: 1800px;
+            height: 1800px;
+            border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+            background: radial-gradient(ellipse 70% 60% at 40% 45%, rgba(220, 38, 38, 0.9) 0%, rgba(220, 38, 38, 0.4) 20%, rgba(220, 38, 38, 0.15) 40%, rgba(220, 38, 38, 0.05) 60%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            filter: blur(40px);
         }
 
         /* Mobile Responsive */
@@ -656,8 +780,7 @@
             }
 
             .footer-links {
-                flex-direction: column;
-                gap: 12px;
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -715,9 +838,7 @@
             </div>
             <div class="nav-links">
                 <a href="#work">Work</a>
-                <span>|</span>
-                <a href="#about">About</a>
-                <span>|</span>
+                <a href="about.html">About</a>
                 <a href="#projects">Projects</a>
             </div>
             <div class="social-icons">
@@ -731,10 +852,13 @@
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
                 </a>
+                <a href="resume.pdf" target="_blank" aria-label="Resume">
+                    <svg fill="#0A0A0A" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zm-3-7h-2v4h-2v-4H9l3-3 3 3z"/>
+                    </svg>
+                </a>
             </div>
         </nav>
-
-        <div class="divider"></div>
 
         <!-- Hero Section -->
         <section class="hero">
@@ -854,26 +978,83 @@
 
             <div class="divider"></div>
 
-            <div class="phone-mockup-container">
-                <div class="phone-mockup">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                        <div class="phone-screen-content"></div>
+            <!-- Sage Project -->
+            <div class="browser-mockup-container">
+                <div class="project-details" style="text-align: center; margin-bottom: 20px;">
+                    <h3>Sage Voice Assistant</h3>
+                    <p class="tagline">Your AI-powered voice companion</p>
+                    <div class="project-tech-stack" style="justify-content: center;">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">WebSockets</span>
+                        <span class="tech-tag">ElevenLabs API</span>
+                        <span class="tech-tag">Socket.IO</span>
                     </div>
                 </div>
-                <div class="project-details">
-                    <h3>Space News Website</h3>
-                    <p class="tagline">Exploring the cosmos, one article at a time</p>
-                    <div class="project-tech-stack">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Responsive Design</span>
+                <div class="browser-mockup">
+                    <div class="browser-toolbar">
+                        <div class="browser-buttons">
+                            <div class="browser-button red"></div>
+                            <div class="browser-button yellow"></div>
+                            <div class="browser-button green"></div>
+                        </div>
+                        <div class="browser-url-bar">sage.tidrobo.com</div>
                     </div>
-                    <p style="margin-bottom: 24px; line-height: 1.6;">
-                        A dynamic web platform featuring the latest space exploration news, NASA updates, and cosmic discoveries. Built with modern web technologies and responsive design for seamless viewing across all devices.
+                    <div class="browser-screen">
+                        <div class="sage-slideshow">
+                            <div class="sage-slide slide-1"></div>
+                            <div class="sage-slide slide-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 24px;">
+                    <p style="margin-bottom: 24px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        A real-time voice assistant using Flask and WebSockets for two-way audio streaming across web and CLI clients. Features push-to-talk interface with live transcript display and sub-second response time.
                     </p>
-                    <div class="project-links">
+                    <div class="project-links" style="justify-content: center;">
+                        <a href="https://github.com/tidrobo1/Sage-Voice-Assistant" target="_blank" class="project-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider" style="margin: 60px 0;"></div>
+
+            <!-- Space News Project -->
+            <div class="browser-mockup-container">
+                <div class="project-details" style="text-align: center; margin-bottom: 20px;">
+                    <h3>Space! News</h3>
+                    <p class="tagline">Exploring the cosmos, one article at a time</p>
+                    <div class="project-tech-stack" style="justify-content: center;">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Ant Design</span>
+                        <span class="tech-tag">RESTful API</span>
+                    </div>
+                </div>
+                <div class="browser-mockup">
+                    <div class="browser-toolbar">
+                        <div class="browser-buttons">
+                            <div class="browser-button red"></div>
+                            <div class="browser-button yellow"></div>
+                            <div class="browser-button green"></div>
+                        </div>
+                        <div class="browser-url-bar">spacenews.tidrobo.com</div>
+                    </div>
+                    <div class="browser-screen">
+                        <div class="browser-screen-content"></div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 24px;">
+                    <p style="margin-bottom: 24px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        A responsive news aggregation platform serving 9,000+ articles with real-time API updates. Features dynamic pagination, search functionality, and dual-view modes with reusable React components and TypeScript type safety.
+                    </p>
+                    <div class="project-links" style="justify-content: center;">
                         <a href="https://github.com/tidrobo1/Space-news-website" target="_blank" class="project-link">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -891,11 +1072,11 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="mailto:your.email@example.com">→Email</a>
-                    <a href="#resume" target="_blank">→Resume</a>
-                    <a href="https://www.linkedin.com/in/thomas-idrobo/" target="_blank">→LinkedIn</a>
-                    <a href="https://www.instagram.com/thomas.idrobo/" target="_blank">→Instagram</a>
-                    <a href="https://github.com/tidrobo1" target="_blank">→GitHub</a>
+                    <a href="mailto:elitidrobo@gmail.com">Email</a>
+                    <a href="resume.pdf" target="_blank">Resume</a>
+                    <a href="https://www.linkedin.com/in/thomas-idrobo/" target="_blank">LinkedIn</a>
+                    <a href="https://www.instagram.com/thomas.idrobo/" target="_blank">Instagram</a>
+                    <a href="https://github.com/tidrobo1" target="_blank">GitHub</a>
                 </div>
                 <div class="footer-meta">
                     <span>Updated 1/25</span>
@@ -904,6 +1085,8 @@
             </div>
         </footer>
     </div>
+
+    <div class="mouse-glow"></div>
 
     <script>
         // Prevent browser from restoring scroll position
@@ -1000,6 +1183,44 @@
             document.querySelector('.blur-5').style.transform = `translate(${moveX * 0.35}px, ${moveY * 0.35}px)`;
             document.querySelector('.blur-6').style.transform = `translate(${moveX * 0.45}px, ${moveY * 0.45}px)`;
         });
+
+        // Smooth mouse follow for glow
+        let mouseX = window.innerWidth / 2 + window.scrollX;
+        let mouseY = window.innerHeight / 2 + window.scrollY;
+        let currentX = mouseX;
+        let currentY = mouseY;
+        const glow = document.querySelector('.mouse-glow');
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+        });
+
+        function animateGlow() {
+            // Smooth interpolation (very sluggish follow)
+            currentX += (mouseX - currentX) * 0.00825;
+            currentY += (mouseY - currentY) * 0.00825;
+
+            // Add flickering effect
+            const flicker = 0.98 + Math.random() * 0.02;
+            const scaleX = 1 + (Math.random() - 0.5) * 0.03;
+            const scaleY = 1 + (Math.random() - 0.5) * 0.03;
+            const rotate = (Math.random() - 0.5) * 3;
+
+            // Convert page coordinates to viewport coordinates for fixed positioning
+            const viewportX = currentX - window.scrollX;
+            const viewportY = currentY - window.scrollY;
+
+            // Move the glow
+            glow.style.left = viewportX + 'px';
+            glow.style.top = viewportY + 'px';
+            glow.style.opacity = flicker;
+            glow.style.transform = `translate(-50%, -50%) scale(${scaleX}, ${scaleY}) rotate(${rotate}deg)`;
+
+            requestAnimationFrame(animateGlow);
+        }
+
+        animateGlow();
     </script>
 </body>
 </html>
